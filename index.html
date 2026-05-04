@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sleep Calculator</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin:0;
+    font-family:'Inter', sans-serif;
+    background: radial-gradient(circle at top, #1e293b, #020617);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.container {
+    width:420px;
+    padding:40px;
+    border-radius:24px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 40px rgba(99,102,241,0.3);
+    text-align:center;
+}
+
+h1 {
+    margin-bottom:10px;
+}
+
+.subtitle {
+    color:#94a3b8;
+    font-size:14px;
+}
+
+label {
+    display:block;
+    margin-top:20px;
+    text-align:left;
+    font-size:14px;
+}
+
+input {
+    width:100%;
+    padding:14px;
+    margin-top:10px;
+    border-radius:12px;
+    border:none;
+    background:#020617;
+    color:white;
+}
+
+button {
+    width:100%;
+    padding:14px;
+    margin-top:20px;
+    border-radius:12px;
+    border:none;
+    background: linear-gradient(90deg,#6366f1,#8b5cf6);
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+    box-shadow: 0 0 20px rgba(139,92,246,0.5);
+}
+
+button:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 30px rgba(139,92,246,0.8);
+}
+
+.result {
+    margin-top:25px;
+}
+
+.result span {
+    display:block;
+    margin-top:10px;
+    font-size:22px;
+    font-weight:700;
+    color:#a78bfa;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {opacity:0; transform:translateY(10px);}
+    to {opacity:1; transform:translateY(0);}
+}
+
+.footer {
+    margin-top:30px;
+    font-size:12px;
+    color:#64748b;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+    <h1>😴 Sleep Calculator</h1>
+    <p class="subtitle">Optimize your wake-up time</p>
+
+    <label>🌙 When do you go to bed?</label>
+    <input type="time" id="bedtime">
+
+    <button onclick="calculate()">Calculate</button>
+
+    <div class="result" id="result"></div>
+
+    <div class="footer">
+        Based on 90-minute sleep cycles
+    </div>
+</div>
+
+<script>
+function calculate() {
+    const input = document.getElementById("bedtime").value;
+    if (!input) {
+        document.getElementById("result").innerHTML = "⛔ Enter a valid time";
+        return;
+    }
+
+    let [h, m] = input.split(":").map(Number);
+    let total = h * 60 + m;
+
+    let results = [];
+
+    for (let i = 4; i <= 6; i++) {
+        let wake = total + (i * 90);
+        let hour = Math.floor((wake / 60) % 24);
+        let min = wake % 60;
+
+        results.push(
+            hour.toString().padStart(2,'0') + ":" +
+            min.toString().padStart(2,'0')
+        );
+    }
+
+    document.getElementById("result").innerHTML =
+        "<h3>🕒 Best wake-up times:</h3>" +
+        results.map(r => `<span>${r}</span>`).join("");
+}
+</script>
+
+</body>
+</html>
