@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-K3V7DTTX');</script>
-<!-- End Google Tag Manager -->
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sleep Calculator</title>
 
+<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
+<!-- Google Tag Manager -->
+<script>
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id=GTM-K3V7DTTX'+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-K3V7DTTX');
+</script>
+<!-- End Google Tag Manager -->
+
 <style>
+
 body {
-    <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K3V7DTTX"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
     margin:0;
     font-family:'Inter', sans-serif;
-    background: radial-gradient(circle at top, #1e293b, #020617);
+    background: radial-gradient(circle at top, #0f172a, #020617);
     color:white;
     display:flex;
     justify-content:center;
@@ -36,7 +38,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     border-radius:24px;
     background: rgba(255,255,255,0.05);
     backdrop-filter: blur(20px);
-    box-shadow: 0 0 40px rgba(99,102,241,0.3);
+    box-shadow: 0 0 50px rgba(99,102,241,0.25);
     text-align:center;
 }
 
@@ -47,13 +49,15 @@ h1 {
 .subtitle {
     color:#94a3b8;
     font-size:14px;
+    margin-bottom:10px;
 }
 
 label {
     display:block;
     margin-top:20px;
-    text-align:left;
     font-size:14px;
+    color:#cbd5e1;
+    text-align:left;
 }
 
 input {
@@ -62,7 +66,7 @@ input {
     margin-top:10px;
     border-radius:12px;
     border:none;
-    background:#020617;
+    background:#0f172a;
     color:white;
 }
 
@@ -76,13 +80,11 @@ button {
     color:white;
     font-weight:600;
     cursor:pointer;
-    transition:0.3s;
-    box-shadow: 0 0 20px rgba(139,92,246,0.5);
+    transition:0.2s;
 }
 
 button:hover {
     transform: scale(1.03);
-    box-shadow: 0 0 30px rgba(139,92,246,0.8);
 }
 
 .result {
@@ -91,16 +93,10 @@ button:hover {
 
 .result span {
     display:block;
-    margin-top:10px;
-    font-size:22px;
+    margin-top:8px;
+    font-size:20px;
     font-weight:700;
     color:#a78bfa;
-    animation: fadeIn 0.5s ease forwards;
-}
-
-@keyframes fadeIn {
-    from {opacity:0; transform:translateY(10px);}
-    to {opacity:1; transform:translateY(0);}
 }
 
 .footer {
@@ -108,12 +104,28 @@ button:hover {
     font-size:12px;
     color:#64748b;
 }
+
+a {
+    color:#94a3b8;
+    margin:0 10px;
+    font-size:12px;
+}
+
 </style>
 
 </head>
+
 <body>
 
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K3V7DTTX"
+height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End GTM -->
+
 <div class="container">
+
     <h1>😴 Sleep Calculator</h1>
     <p class="subtitle">Optimize your wake-up time</p>
 
@@ -123,22 +135,26 @@ button:hover {
     <button onclick="calculate()">Calculate</button>
 
     <div class="result" id="result"></div>
+
+    <!-- SEO CONTENT -->
     <h2>Why sleep cycles matter</h2>
-<p>Sleep is divided into cycles of approximately 90 minutes...</p>
+    <p>Sleep is divided into cycles of approximately 90 minutes. Waking up at the end of a cycle helps you feel more refreshed and alert.</p>
 
-<h2>Best sleep duration</h2>
-<p>Most adults need between 7 and 9 hours of sleep...</p>
+    <h2>Best sleep duration</h2>
+    <p>Most adults need between 7 and 9 hours of sleep for optimal health, focus and recovery.</p>
 
-<h2>How this calculator works</h2>
-<p>We calculate optimal wake-up times based on full sleep cycles...</p>
+    <h2>How this calculator works</h2>
+    <p>We calculate optimal wake-up times based on full sleep cycles of 90 minutes starting from your bedtime.</p>
 
     <div class="footer">
         Based on 90-minute sleep cycles
     </div>
-</div>
+
     <div style="margin-top:20px;">
-  <a href="privacy.html" style="color:#94a3b8;margin-right:10px;">Privacy</a>
-  <a href="terms.html" style="color:#94a3b8;">Terms</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+    </div>
+
 </div>
 
 <script>
@@ -166,7 +182,7 @@ function calculate() {
     }
 
     document.getElementById("result").innerHTML =
-        "<h3>🕒 Best wake-up times:</h3>" +
+        "🕒 Best wake-up times:" +
         results.map(r => `<span>${r}</span>`).join("");
 }
 </script>
