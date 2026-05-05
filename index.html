@@ -1,175 +1,124 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleep Calculator - Optimize Your Sleep Cycles</title>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sleep Calculator</title>
+    <!-- 1. SCRIPT ADSENSE INDISPENSABLE -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1805732481707409" crossorigin="anonymous"></script>
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-<!-- Google Tag Manager -->
-<script>
-(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id=GTM-K3V7DTTX'+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-K3V7DTTX');
-</script>
-<!-- End Google Tag Manager -->
+    <style>
+        body {
+            margin:0;
+            font-family:'Inter', sans-serif;
+            background: radial-gradient(circle at top, #0f172a, #020617);
+            color:white;
+            display:flex;
+            flex-direction: column; /* Changé pour permettre le footer en bas */
+            align-items:center;
+            min-height:100vh;
+            padding: 20px;
+        }
 
-<style>
+        .container {
+            width:100%;
+            max-width:420px;
+            padding:30px;
+            border-radius:24px;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 50px rgba(99,102,241,0.25);
+            text-align:center;
+            margin-bottom: 30px;
+        }
 
-body {
-    margin:0;
-    font-family:'Inter', sans-serif;
-    background: radial-gradient(circle at top, #0f172a, #020617);
-    color:white;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height:100vh;
-}
+        h1 { margin-bottom:10px; font-size: 1.8rem; }
+        .subtitle { color:#94a3b8; font-size:14px; margin-bottom:20px; }
+        label { display:block; margin-top:20px; font-size:14px; color:#cbd5e1; text-align:left; }
+        
+        input { 
+            width:100%; padding:14px; margin-top:10px; border-radius:12px; 
+            border:1px solid rgba(255,255,255,0.1); background:#0f172a; color:white;
+            box-sizing: border-box;
+        }
 
-.container {
-    width:420px;
-    padding:40px;
-    border-radius:24px;
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(20px);
-    box-shadow: 0 0 50px rgba(99,102,241,0.25);
-    text-align:center;
-}
+        button { 
+            width:100%; padding:14px; margin-top:20px; border-radius:12px; border:none;
+            background: linear-gradient(90deg,#6366f1,#8b5cf6); color:white;
+            font-weight:600; cursor:pointer; transition:0.2s;
+        }
 
-h1 {
-    margin-bottom:10px;
-}
+        button:hover { transform: scale(1.02); }
 
-.subtitle {
-    color:#94a3b8;
-    font-size:14px;
-    margin-bottom:10px;
-}
+        .result { margin-top:25px; padding: 15px; border-radius: 12px; background: rgba(99,102,241,0.1); }
+        .result span { display:block; margin-top:8px; font-size:22px; font-weight:700; color:#a78bfa; }
 
-label {
-    display:block;
-    margin-top:20px;
-    font-size:14px;
-    color:#cbd5e1;
-    text-align:left;
-}
+        /* SEO Section */
+        .seo-content { text-align: left; margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+        .seo-content h2 { font-size: 1.1rem; color: #a78bfa; margin-top: 20px; }
+        .seo-content p { font-size: 0.9rem; color: #94a3b8; line-height: 1.5; }
 
-input {
-    width:100%;
-    padding:14px;
-    margin-top:10px;
-    border-radius:12px;
-    border:none;
-    background:#0f172a;
-    color:white;
-}
+        footer { margin-top: auto; padding: 20px; font-size: 0.8rem; text-align: center; color: #64748b; }
+        footer a { color:#94a3b8; text-decoration: none; margin: 0 10px; }
+        footer a:hover { text-decoration: underline; }
 
-button {
-    width:100%;
-    padding:14px;
-    margin-top:20px;
-    border-radius:12px;
-    border:none;
-    background: linear-gradient(90deg,#6366f1,#8b5cf6);
-    color:white;
-    font-weight:600;
-    cursor:pointer;
-    transition:0.2s;
-}
-
-button:hover {
-    transform: scale(1.03);
-}
-
-.result {
-    margin-top:25px;
-}
-
-.result span {
-    display:block;
-    margin-top:8px;
-    font-size:20px;
-    font-weight:700;
-    color:#a78bfa;
-}
-
-.footer {
-    margin-top:30px;
-    font-size:12px;
-    color:#64748b;
-}
-
-a {
-    color:#94a3b8;
-    margin:0 10px;
-    font-size:12px;
-}
-
-</style>
-
+        /* Style pour l'annonce */
+        .ad-slot { margin: 20px 0; min-height: 100px; }
+    </style>
 </head>
 
 <body>
 
-<!-- Google Tag Manager (noscript) -->
-<noscript>
-<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K3V7DTTX"
-height="0" width="0" style="display:none;visibility:hidden"></iframe>
-</noscript>
-<!-- End GTM -->
-
 <div class="container">
-
     <h1>😴 Sleep Calculator</h1>
-    <p class="subtitle">Optimize your wake-up time</p>
+    <p class="subtitle">Optimize your wake-up time based on sleep cycles</p>
+
+    <!-- 2. EMPLACEMENT PUB (Display Ads) -->
+    <div class="ad-slot">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1805732481707409"
+             data-ad-slot="auto"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
 
     <label>🌙 When do you go to bed?</label>
     <input type="time" id="bedtime">
 
-    <button onclick="calculate()">Calculate</button>
+    <button onclick="calculate()">Calculate Optimal Wake-up Times</button>
 
-    <div class="result" id="result"></div>
+    <div class="result" id="result" style="display:none;"></div>
 
-    <!-- SEO CONTENT -->
-    <h2>Why sleep cycles matter</h2>
-    <p>Sleep is divided into cycles of approximately 90 minutes. Waking up at the end of a cycle helps you feel more refreshed and alert.</p>
+    <div class="seo-content">
+        <h2>Why sleep cycles matter</h2>
+        <p>Sleep is divided into cycles of approximately 90 minutes. Waking up at the end of a cycle helps you feel more refreshed and alert.</p>
 
-    <h2>Best sleep duration</h2>
-    <p>Most adults need between 7 and 9 hours of sleep for optimal health, focus and recovery.</p>
-
-    <h2>How this calculator works</h2>
-    <p>We calculate optimal wake-up times based on full sleep cycles of 90 minutes starting from your bedtime.</p>
-
-    <div class="footer">
-        Based on 90-minute sleep cycles
+        <h2>Best sleep duration</h2>
+        <p>Most adults need between 7 and 9 hours of sleep for optimal health, focus and recovery. Our calculator helps you find the perfect timing.</p>
     </div>
-
-    <div style="margin-top:20px;">
-        <a href="privacy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
-    </div>
-
 </div>
 
 <script>
 function calculate() {
     const input = document.getElementById("bedtime").value;
+    const resultDiv = document.getElementById("result");
+    
     if (!input) {
-        document.getElementById("result").innerHTML = "⛔ Enter a valid time";
+        resultDiv.style.display = "block";
+        resultDiv.innerHTML = "⛔ Enter a valid time";
         return;
     }
 
     let [h, m] = input.split(":").map(Number);
     let total = h * 60 + m;
-
     let results = [];
 
+    // On calcule pour 4, 5 et 6 cycles (6h, 7h30, 9h)
     for (let i = 4; i <= 6; i++) {
         let wake = total + (i * 90);
         let hour = Math.floor((wake / 60) % 24);
@@ -181,17 +130,19 @@ function calculate() {
         );
     }
 
-    document.getElementById("result").innerHTML =
-        "🕒 Best wake-up times:" +
+    resultDiv.style.display = "block";
+    resultDiv.innerHTML = "🕒 Best wake-up times (at the end of cycles):" +
         results.map(r => `<span>${r}</span>`).join("");
 }
 </script>
-    <footer style="margin-top: 50px; font-size: 0.8rem; text-align: center;">
+
+<footer class="footer">
     <p>
-        <a href="about.html" style="color: #666; margin: 0 10px;">À propos</a> | 
-        <a href="privacy.html" style="color: #666; margin: 0 10px;">Confidentialité</a>
+        <a href="about.html">À propos</a> | 
+        <a href="privacy.html">Confidentialité</a> |
+        <a href="terms.html">Conditions d'utilisation</a>
     </p>
-    <p>&copy; 2026 Service Express</p>
+    <p>&copy; 2026 Service Express - Basé sur des cycles de 90 minutes</p>
 </footer>
 
 </body>
