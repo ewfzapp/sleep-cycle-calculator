@@ -1,149 +1,233 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sleep Calculator - Optimize Your Sleep Cycles</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculateur de Cycles de Sommeil – Heure de Réveil Idéale | Service Express</title>
+  <meta name="description" content="Calculez l'heure de réveil idéale selon vos cycles de sommeil de 90 minutes. Entrez l'heure du coucher et découvrez les créneaux optimaux pour vous réveiller en forme.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://sleep.service-express.org/">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1805732481707409" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#04050f;--surface:rgba(255,255,255,0.05);--border:rgba(255,255,255,0.09);--purple:#a78bfa;--purple-dim:#818cf8;--accent:#7c3aed;--text:#e8eaf6;--muted:#7c85a8;--green:#34d399;--amber:#fbbf24;--blue:#60a5fa;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:0 16px 60px;}
+    body::before{content:'';position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(99,60,180,.18) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 10% 90%,rgba(30,80,200,.10) 0%,transparent 70%);pointer-events:none;}
+    .wrap{position:relative;z-index:1;max-width:680px;margin:0 auto;}
 
-    <!-- 1. SCRIPT ADSENSE INDISPENSABLE -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1805732481707409" crossorigin="anonymous"></script>
+    nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0 24px;border-bottom:1px solid var(--border);margin-bottom:36px;}
+    .nav-brand{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--purple);text-decoration:none;}
+    .nav-back{font-size:13px;color:var(--muted);text-decoration:none;}
+    .nav-back:hover{color:var(--purple);}
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    .hero{text-align:center;margin-bottom:32px;}
+    .hero h1{font-family:'Syne',sans-serif;font-size:clamp(26px,5vw,40px);font-weight:800;margin-bottom:8px;}
+    .hero h1 span{color:var(--purple);}
+    .hero p{font-size:15px;color:var(--muted);}
 
-    <style>
-        body {
-            margin:0;
-            font-family:'Inter', sans-serif;
-            background: radial-gradient(circle at top, #0f172a, #020617);
-            color:white;
-            display:flex;
-            flex-direction: column; /* Changé pour permettre le footer en bas */
-            align-items:center;
-            min-height:100vh;
-            padding: 20px;
-        }
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:28px;margin-bottom:20px;}
 
-        .container {
-            width:100%;
-            max-width:420px;
-            padding:30px;
-            border-radius:24px;
-            background: rgba(255,255,255,0.05);
-            backdrop-filter: blur(20px);
-            box-shadow: 0 0 50px rgba(99,102,241,0.25);
-            text-align:center;
-            margin-bottom: 30px;
-        }
+    /* TABS */
+    .tabs{display:flex;gap:0;margin-bottom:24px;background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+    .tab{flex:1;padding:12px;font-size:14px;font-weight:600;background:transparent;border:none;color:var(--muted);cursor:pointer;transition:all .2s;}
+    .tab.active{background:var(--accent);color:#fff;}
 
-        h1 { margin-bottom:10px; font-size: 1.8rem; }
-        .subtitle { color:#94a3b8; font-size:14px; margin-bottom:20px; }
-        label { display:block; margin-top:20px; font-size:14px; color:#cbd5e1; text-align:left; }
-        
-        input { 
-            width:100%; padding:14px; margin-top:10px; border-radius:12px; 
-            border:1px solid rgba(255,255,255,0.1); background:#0f172a; color:white;
-            box-sizing: border-box;
-        }
+    .field{margin-bottom:20px;}
+    .field label{display:block;font-size:13px;color:var(--muted);margin-bottom:8px;font-weight:500;}
+    .time-input{width:100%;padding:16px;font-size:28px;font-weight:700;text-align:center;font-family:'Syne',sans-serif;background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:14px;color:var(--purple);outline:none;transition:border-color .2s;}
+    .time-input:focus{border-color:var(--purple);}
 
-        button { 
-            width:100%; padding:14px; margin-top:20px; border-radius:12px; border:none;
-            background: linear-gradient(90deg,#6366f1,#8b5cf6); color:white;
-            font-weight:600; cursor:pointer; transition:0.2s;
-        }
+    .btn-calc{width:100%;padding:15px;font-size:16px;font-weight:700;background:linear-gradient(135deg,var(--accent),#6d28d9);color:#fff;border:none;border-radius:14px;cursor:pointer;transition:opacity .2s,transform .15s;}
+    .btn-calc:hover{opacity:.88;transform:translateY(-1px);}
 
-        button:hover { transform: scale(1.02); }
+    /* RÉSULTATS */
+    #result{display:none;}
+    .result-intro{text-align:center;font-size:14px;color:var(--muted);margin-bottom:16px;}
+    .cycles-list{display:flex;flex-direction:column;gap:12px;margin-bottom:20px;}
+    .cycle-row{
+      display:flex;align-items:center;justify-content:space-between;
+      background:var(--surface);border:1px solid var(--border);border-radius:16px;
+      padding:16px 20px;gap:16px;
+      transition:border-color .2s,background .2s;
+    }
+    .cycle-row.best{border-color:rgba(167,139,250,.5);background:rgba(167,139,250,.08);}
+    .cycle-time{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--purple);}
+    .cycle-row.best .cycle-time{color:#fff;}
+    .cycle-meta{flex:1;padding-left:4px;}
+    .cycle-cycles{font-size:13px;color:var(--text);font-weight:600;}
+    .cycle-duration{font-size:12px;color:var(--muted);margin-top:2px;}
+    .cycle-badge{font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;white-space:nowrap;}
+    .badge-best{background:rgba(167,139,250,.2);color:var(--purple);}
+    .badge-ok{background:rgba(52,211,153,.12);color:var(--green);}
+    .badge-short{background:rgba(251,191,36,.12);color:var(--amber);}
 
-        .result { margin-top:25px; padding: 15px; border-radius: 12px; background: rgba(99,102,241,0.1); }
-        .result span { display:block; margin-top:8px; font-size:22px; font-weight:700; color:#a78bfa; }
+    /* SEO */
+    .seo{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:28px;margin-top:8px;}
+    .seo h2{font-family:'Syne',sans-serif;font-size:18px;color:var(--purple);margin-bottom:12px;}
+    .seo h3{font-size:15px;color:var(--text);margin:20px 0 8px;}
+    .seo p{font-size:14px;color:var(--muted);line-height:1.75;margin-bottom:10px;}
+    .seo ul{padding-left:18px;color:var(--muted);font-size:14px;line-height:2.1;}
 
-        /* SEO Section */
-        .seo-content { text-align: left; margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
-        .seo-content h2 { font-size: 1.1rem; color: #a78bfa; margin-top: 20px; }
-        .seo-content p { font-size: 0.9rem; color: #94a3b8; line-height: 1.5; }
-
-        footer { margin-top: auto; padding: 20px; font-size: 0.8rem; text-align: center; color: #64748b; }
-        footer a { color:#94a3b8; text-decoration: none; margin: 0 10px; }
-        footer a:hover { text-decoration: underline; }
-
-        /* Style pour l'annonce */
-        .ad-slot { margin: 20px 0; min-height: 100px; }
-    </style>
+    footer{text-align:center;margin-top:48px;font-size:12px;color:var(--muted);}
+    footer a{color:var(--purple-dim);text-decoration:none;}
+    footer a:hover{text-decoration:underline;}
+  </style>
 </head>
-
 <body>
+<div class="wrap">
+  <nav>
+    <a class="nav-brand" href="https://service-express.org">⚡ Service Express</a>
+    <a class="nav-back" href="https://service-express.org">← Retour au portail</a>
+  </nav>
 
-<div class="container">
-    <h1>😴 Sleep Calculator</h1>
-    <p class="subtitle">Optimize your wake-up time based on sleep cycles</p>
+  <div class="hero">
+    <h1>🌙 Cycles de <span>Sommeil</span></h1>
+    <p>Réveillez-vous en pleine forme en respectant vos cycles naturels de 90 minutes</p>
+  </div>
 
-    <!-- 2. EMPLACEMENT PUB (Display Ads) -->
-    <div class="ad-slot">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-1805732481707409"
-             data-ad-slot="auto"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  <div class="card">
+    <div class="tabs">
+      <button class="tab active" id="tab-coucher" onclick="setMode('coucher')">🛏 Je me couche à…</button>
+      <button class="tab" id="tab-lever" onclick="setMode('lever')">⏰ Je veux me lever à…</button>
     </div>
 
-    <label>🌙 When do you go to bed?</label>
-    <input type="time" id="bedtime">
-
-    <button onclick="calculate()">Calculate Optimal Wake-up Times</button>
-
-    <div class="result" id="result" style="display:none;"></div>
-
-    <div class="seo-content">
-        <h2>Why sleep cycles matter</h2>
-        <p>Sleep is divided into cycles of approximately 90 minutes. Waking up at the end of a cycle helps you feel more refreshed and alert.</p>
-
-        <h2>Best sleep duration</h2>
-        <p>Most adults need between 7 and 9 hours of sleep for optimal health, focus and recovery. Our calculator helps you find the perfect timing.</p>
+    <div class="field">
+      <label id="field-label">À quelle heure vous couchez-vous ?</label>
+      <input type="time" class="time-input" id="time-input" value="23:00">
     </div>
+    <button class="btn-calc" onclick="calculer()">Calculer mes horaires idéaux →</button>
+  </div>
+
+  <div id="result">
+    <p class="result-intro" id="result-intro">–</p>
+    <div class="cycles-list" id="cycles-list"></div>
+  </div>
+
+  <div class="seo">
+    <h2>Pourquoi respecter les cycles de sommeil ?</h2>
+    <p>Le sommeil est structuré en cycles d'environ 90 minutes, chacun composé de plusieurs phases : sommeil léger, sommeil profond et sommeil paradoxal (REM). Se réveiller en milieu de cycle — notamment en plein sommeil profond — provoque une inertie du sommeil : cette sensation de confusion et de fatigue intense au réveil.</p>
+
+    <h3>Les phases d'un cycle de sommeil</h3>
+    <ul>
+      <li>Phase 1 – Endormissement (5–10 min) : transition veille/sommeil</li>
+      <li>Phase 2 – Sommeil léger (20 min) : ralentissement cardiaque, température corporelle baisse</li>
+      <li>Phase 3 – Sommeil profond (20–40 min) : réparation physique, consolidation de la mémoire</li>
+      <li>Phase REM – Sommeil paradoxal (10–20 min) : rêves intenses, consolidation émotionnelle</li>
+    </ul>
+
+    <h3>Combien de cycles par nuit ?</h3>
+    <p>Une nuit de sommeil optimale comprend 5 à 6 cycles complets, soit 7h30 à 9 heures. Les premiers cycles de la nuit sont riches en sommeil profond (récupération physique), les derniers en sommeil REM (récupération cognitive). Interrompre une nuit courte supprime surtout le REM — ce qui affecte la mémoire et la régulation émotionnelle.</p>
+
+    <h3>Le délai d'endormissement</h3>
+    <p>Notre calculateur ajoute automatiquement 14 minutes au moment du coucher pour simuler le délai moyen d'endormissement. Cette valeur varie selon les individus (5 à 20 minutes) et peut être allongée par le stress, la caféine ou la lumière bleue des écrans.</p>
+
+    <h3>Conseils pour améliorer la qualité du sommeil</h3>
+    <ul>
+      <li>Maintenez des horaires de coucher et de lever réguliers, même le week-end</li>
+      <li>Évitez les écrans 1h avant de dormir (lumière bleue bloque la mélatonine)</li>
+      <li>Température idéale de la chambre : 16 à 19°C</li>
+      <li>Évitez la caféine après 14h00</li>
+      <li>Une sieste de 20 minutes (power nap) avant 15h est bénéfique</li>
+    </ul>
+  </div>
+
+  <footer>
+    <p>© 2026 Service Express &nbsp;·&nbsp; <a href="https://sleep.service-express.org/privacy.html">Confidentialité</a></p>
+  </footer>
 </div>
-
 <script>
-function calculate() {
-    const input = document.getElementById("bedtime").value;
-    const resultDiv = document.getElementById("result");
-    
-    if (!input) {
-        resultDiv.style.display = "block";
-        resultDiv.innerHTML = "⛔ Enter a valid time";
-        return;
+const FALL_ASLEEP = 14; // minutes
+let mode = 'coucher';
+
+function setMode(m) {
+  mode = m;
+  document.getElementById('tab-coucher').classList.toggle('active', m==='coucher');
+  document.getElementById('tab-lever').classList.toggle('active', m==='lever');
+  document.getElementById('field-label').textContent = m==='coucher'
+    ? 'À quelle heure vous couchez-vous ?'
+    : 'À quelle heure souhaitez-vous vous lever ?';
+  document.getElementById('result').style.display='none';
+}
+
+function fmtTime(h, m) {
+  return `${String(h%24).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
+}
+
+function addMin(h, m, delta) {
+  const total = h*60 + m + delta;
+  return [Math.floor(total/60)%24, total%60];
+}
+
+function subMin(h, m, delta) {
+  let total = h*60 + m - delta;
+  if(total<0) total+=24*60;
+  return [Math.floor(total/60)%24, total%60];
+}
+
+function calculer() {
+  const val = document.getElementById('time-input').value;
+  if(!val){alert('Veuillez saisir une heure.');return;}
+  const [hh, mm] = val.split(':').map(Number);
+
+  const list = document.getElementById('cycles-list');
+  list.innerHTML = '';
+
+  const BADGE = ['badge-short','badge-short','badge-ok','badge-best','badge-best','badge-ok'];
+  const IDEAL = [false,false,false,true,true,false];
+
+  if(mode === 'coucher') {
+    // Heure de coucher → heures de réveil
+    document.getElementById('result-intro').textContent =
+      `Si vous vous couchez à ${fmtTime(hh,mm)}, voici les heures de réveil optimales :`;
+
+    for(let c=1; c<=6; c++) {
+      const [rh,rm] = addMin(hh, mm, FALL_ASLEEP + c*90);
+      const dur = (FALL_ASLEEP + c*90)/60;
+      const best = IDEAL[c-1];
+      const badgeClass = BADGE[c-1];
+      const badgeText = best ? '⭐ Idéal' : c<=2 ? '⚠ Court' : '✓ Correct';
+      const row = document.createElement('div');
+      row.className = 'cycle-row' + (best?' best':'');
+      row.innerHTML = `
+        <div class="cycle-time">${fmtTime(rh,rm)}</div>
+        <div class="cycle-meta">
+          <div class="cycle-cycles">${c} cycle${c>1?'s':''} de sommeil</div>
+          <div class="cycle-duration">${dur.toFixed(1).replace('.',',')}h de sommeil (${FALL_ASLEEP} min d'endormissement incluses)</div>
+        </div>
+        <div class="cycle-badge ${badgeClass}">${badgeText}</div>
+      `;
+      list.appendChild(row);
     }
+  } else {
+    // Heure de lever → heures de coucher
+    document.getElementById('result-intro').textContent =
+      `Pour vous lever à ${fmtTime(hh,mm)}, couchez-vous à l'une de ces heures :`;
 
-    let [h, m] = input.split(":").map(Number);
-    let total = h * 60 + m;
-    let results = [];
-
-    // On calcule pour 4, 5 et 6 cycles (6h, 7h30, 9h)
-    for (let i = 4; i <= 6; i++) {
-        let wake = total + (i * 90);
-        let hour = Math.floor((wake / 60) % 24);
-        let min = wake % 60;
-
-        results.push(
-            hour.toString().padStart(2,'0') + ":" +
-            min.toString().padStart(2,'0')
-        );
+    for(let c=6; c>=1; c--) {
+      const [ch,cm] = subMin(hh, mm, FALL_ASLEEP + c*90);
+      const dur = (FALL_ASLEEP + c*90)/60;
+      const best = IDEAL[c-1];
+      const badgeClass = BADGE[c-1];
+      const badgeText = best ? '⭐ Idéal' : c<=2 ? '⚠ Court' : '✓ Correct';
+      const row = document.createElement('div');
+      row.className = 'cycle-row' + (best?' best':'');
+      row.innerHTML = `
+        <div class="cycle-time">${fmtTime(ch,cm)}</div>
+        <div class="cycle-meta">
+          <div class="cycle-cycles">${c} cycle${c>1?'s':''} de sommeil</div>
+          <div class="cycle-duration">${dur.toFixed(1).replace('.',',')}h de sommeil total</div>
+        </div>
+        <div class="cycle-badge ${badgeClass}">${badgeText}</div>
+      `;
+      list.appendChild(row);
     }
+  }
 
-    resultDiv.style.display = "block";
-    resultDiv.innerHTML = "🕒 Best wake-up times (at the end of cycles):" +
-        results.map(r => `<span>${r}</span>`).join("");
+  document.getElementById('result').style.display='block';
+  document.getElementById('result').scrollIntoView({behavior:'smooth',block:'start'});
 }
 </script>
-
-<footer class="footer">
-    <p>
-        <a href="about.html">À propos</a> | 
-        <a href="privacy.html">Confidentialité</a> |
-        <a href="terms.html">Conditions d'utilisation</a>
-    </p>
-    <p>&copy; 2026 Service Express - Basé sur des cycles de 90 minutes</p>
-</footer>
-
 </body>
 </html>
